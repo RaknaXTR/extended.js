@@ -1,18 +1,13 @@
 class ExtendedJS {
   constructor(){
-    this.init()
+    this.init();
   }
   
   init() {
     // [-] Array Prototypes
     // Shuffle
     Array.prototype.shuffle = function(){
-      for (let i = 0; i < this.length; i++) {
-        const x = Math.floor(Math.random()*(i + 1));
-        [this[i], this[x]] = [this[x], this[i]];
-      }
-      
-      return this;
+      return this.sort(() => 0.5 - Math.random());
     }
     
     // Random
