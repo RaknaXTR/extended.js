@@ -45,7 +45,7 @@ class ExtendedJS {
   
       for(var y in x) diff.push(y);
 
-      return diff.slice(0, diff.length-13);
+      return diff.slice(0, diff.length-16);
     }
     
     // Equal
