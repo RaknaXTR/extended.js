@@ -17,6 +17,7 @@ var arr = new Array("foo", "bar", "x", "y", "z")
 var arr2 = new Array("a", "b", "c", "b", "c")
 var arr3 = new Array("foo", "bar", "z")
 var arr4 = new Array("foo", "bar", "x", "y", "z")
+var arr5 = new Array(2, 3, 8, 5, 6)
 
 arr.shuffle() // -> ["bar", "foo", "y", "z", "x"]
 arr.random() // -> "y"
@@ -32,6 +33,9 @@ arr.removeByValue("x") // -> ["foo", "bar", "y", "z"]
 arr.removeByValues("x", "y", "z") // -> ["foo", "bar"]
 arr.editByIndex(0, "hello") // -> ["hello", "bar", "x", "y", "z"]
 arr.editByValue("bar", "world") // -> ["hello", "world", "x", "y", "z"]
+arr5.max() // -> 8
+arr5.min() // -> 2
+arr.pushByIndex(1, "hi!") // -> ["foo", "hi!", "bar", "x", "y", "z"]
 
 // ------- \\
 
