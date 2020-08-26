@@ -105,6 +105,22 @@ class ExtendedJS {
       this[this.indexOf(value)] = newValue;
       return this;
     }
+    
+    // Finds the largest number in the array
+    Array.prototype.max = function(){
+      return this.sort((x, y) => y - x)[0];
+    }
+    
+    // Finds the smallest number in the array
+    Array.prototype.min = function(){
+      return this.sort()[0];
+    }
+    
+    // Pushes element by index
+    Array.prototype.pushByIndex = function(index, element){
+      this.splice(index, 0, element);
+      return this;
+    }
     // [-] Array Prototypes
     
     // [-] Object Properties
