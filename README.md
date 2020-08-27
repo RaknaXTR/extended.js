@@ -1,7 +1,7 @@
 ## Extended.JS
 A great module that assigns property to arrays and Object global object, briefly expanding NodeJS.
 ## About
-This module will come with the function assigned to 13 Array prototypes and the function assigned to 9 Object global object.
+This module will come with the function assigned to 16 Array prototypes and the function assigned to 9 Object global object.
 ## Installation
 ##### NodeJS 12.0.0 or newer is required.
 `npm install @raknax/extended.js`
