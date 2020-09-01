@@ -65,7 +65,7 @@ class ExtendedJS {
     // Remove element by Index
     Array.prototype.removeByIndex = function(index){
       delete this[`${index}`];
-      return this.filter(x => x);
+      return this.filter((x) => x);
     }
     
     // Remove elements by Indexes
@@ -75,13 +75,13 @@ class ExtendedJS {
         delete this[x];
       }
       
-      return this.filter(x => x);
+      return this.filter((x) => x);
     }
     
     // Remove element by Value
     Array.prototype.removeByValue = function(value){
       delete this[this.indexOf(value)];
-      return this.filter(x => x);
+      return this.filter((x) => x);
     }
     
     // Remove elements by Values
@@ -91,7 +91,7 @@ class ExtendedJS {
         delete this[this.indexOf(x)];
       }
       
-      return this.filter(x => x);
+      return this.filter((x) => x);
     }
     
     // Edit by Index
@@ -127,19 +127,9 @@ class ExtendedJS {
     // Remove Key
     Object.defineProperty(Object, "removeKey", {
       value: function(object, keyToRemove) {
-        return Object.keys(object).filter(x => x != keyToRemove).reduce((obj, key) => { 
+        return Object.keys(object).filter((x) => x !== keyToRemove).reduce((obj, key) => { 
           obj[`${key}`] = object[`${key}`];
           return obj;
-        }, {});
-      }
-    })
-    
-    // Remove Keys
-    Object.defineProperty(Object, "removeKeys", {
-      value: function(object, keysToRemove) {
-        return _removeByValues(Object.keys(object), keysToRemove).reduce((obj, key) => { 
-          obj[`${key}`] = object[`${key}`];
-          return obj; 
         }, {});
       }
     })
@@ -150,8 +140,18 @@ class ExtendedJS {
         delete arr1[arr1.indexOf(x)];
       }
       
-      return arr1.filter(x => x);
+      return arr1.filter((x) => x);
     }
+    
+    // Remove Keys
+    Object.defineProperty(Object, "removeKeys", {
+      value: function(object, keysToRemove) {
+        return _removeByValues(Object.keys(object), keysToRemove).reduce((obj, key) => { 
+          obj[`${key}`] = object[`${key}`];
+          return obj; 
+        }, {});
+      }
+    })
     
     // toArray
     Object.defineProperty(Object, "toArray", {
@@ -170,14 +170,14 @@ class ExtendedJS {
     // Equal
     Object.defineProperty(Object, "equal", {
       value: function(obj, obj2) {
-        return JSON.stringify(obj) == JSON.stringify(obj2);
+        return JSON.stringify(obj) === JSON.stringify(obj2);
       }
     })
     
     // isObject
     Object.defineProperty(Object, "isObject", {
       value: function(object) {
-        return typeof object == "object" ? !Array.isArray(object) : false;
+        return typeof object === "object" ? !Array.isArray(object) : false;
       }
     })
     
@@ -206,4 +206,4 @@ class ExtendedJS {
   }
 }
 
-module.exports = ExtendedJS
+module.exports = ExtendedJS;
