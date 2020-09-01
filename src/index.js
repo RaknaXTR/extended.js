@@ -1,3 +1,4 @@
+/*eslint no-extend-native: ["error", { "exceptions": ["Array"] }]*/
 class ExtendedJS {
   constructor(){
     this.init();
@@ -36,35 +37,34 @@ class ExtendedJS {
       let x    = [],
           diff = [];
       
-      for(var i = 0; i < this.length; i++) x[this[i]] = true;
+      for(let i = 0; i < this.length; i++) {
+        x[`${this[i]}`] = true;
+      }
 
-      for(var i = 0; i < other.length; i++) {
-        if (x[other[i]]) delete x[other[i]];
-        else x[other[i]] = true;
+      for(let i = 0; i < other.length; i++) {
+        if (x[`${other[i]}`]) delete x[`${other[i]}`];
+        else x[`${other[i]}`] = true;
       }
   
-      for(var y in x) diff.push(y);
+      for(var y in x) { 
+        diff.push(y);
+      }
 
       return diff.slice(0, diff.length-16);
     }
     
     // Equal
     Array.prototype.equal = function(other){
-      if (this.length !== other.length) return false;
-
-      let array = this.sort();
-      let array2 = other.sort();
-
-      for (var i = 0; i < array.length; i++) {
-        if (array[i] !== array2[i]) return false;
+      if(this.length !== other.length) {
+        return false;
       }
-
-      return true;
+      
+      return JSON.stringify(this.sort()) === JSON.stringify(other.sort());
     }
     
     // Remove element by Index
     Array.prototype.removeByIndex = function(index){
-      delete this[index];
+      delete this[`${index}`];
       return this.filter(x => x);
     }
     
@@ -125,16 +125,22 @@ class ExtendedJS {
     
     // [-] Object Properties
     // Remove Key
-    Object.defineProperty(Object, 'removeKey', {
+    Object.defineProperty(Object, "removeKey", {
       value: function(object, keyToRemove) {
-        return Object.keys(object).filter(x => x != keyToRemove).reduce((obj, key) => { obj[key] = object[key];return obj }, {});
+        return Object.keys(object).filter(x => x != keyToRemove).reduce((obj, key) => { 
+          obj[`${key}`] = object[`${key}`];
+          return obj;
+        }, {});
       }
     })
     
     // Remove Keys
-    Object.defineProperty(Object, 'removeKeys', {
+    Object.defineProperty(Object, "removeKeys", {
       value: function(object, keysToRemove) {
-        return _removeByValues(Object.keys(object), keysToRemove).reduce((obj, key) => { obj[key] = object[key];return obj }, {});
+        return _removeByValues(Object.keys(object), keysToRemove).reduce((obj, key) => { 
+          obj[`${key}`] = object[`${key}`];
+          return obj; 
+        }, {});
       }
     })
     
@@ -148,49 +154,49 @@ class ExtendedJS {
     }
     
     // toArray
-    Object.defineProperty(Object, 'toArray', {
+    Object.defineProperty(Object, "toArray", {
       value: function(object) {
         return Object.keys(object).map((key) => [key, object[key]]);
       }
     })
     
     // Clear
-    Object.defineProperty(Object, 'clear', {
+    Object.defineProperty(Object, "clear", {
       value: function(object) {
         return Object.removeKeys(object, Object.keys(object));
       }
     })
     
     // Equal
-    Object.defineProperty(Object, 'equal', {
+    Object.defineProperty(Object, "equal", {
       value: function(obj, obj2) {
         return JSON.stringify(obj) == JSON.stringify(obj2);
       }
     })
     
     // isObject
-    Object.defineProperty(Object, 'isObject', {
+    Object.defineProperty(Object, "isObject", {
       value: function(object) {
         return typeof object == "object" ? !Array.isArray(object) : false;
       }
     })
     
     // Random
-    Object.defineProperty(Object, 'random', {
+    Object.defineProperty(Object, "random", {
       value: function(object) {
         return Object.toArray(object).random()[1];
       }
     })
     
     // First
-    Object.defineProperty(Object, 'first', {
+    Object.defineProperty(Object, "first", {
       value: function(object) {
         return object[Object.keys(object)[0]];
       }
     })
     
     // Last
-    Object.defineProperty(Object, 'last', {
+    Object.defineProperty(Object, "last", {
       value: function(object) {
         return object[Object.keys(object)[Object.keys(object).length-1]];
       }
