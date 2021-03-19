@@ -1,7 +1,7 @@
 {
   "name": "@raknax/extended.js",
   "version": "1.2.1",
-  "description": "A great module that assigns property to arrays and Object global object, briefly expanding NodeJS.",
+  "description": "A awesome module that assigns property to arrays and Object global object, briefly expanding NodeJS.",
   "main": "app.js",
   "scripts": {
     "start": "node app.js"
